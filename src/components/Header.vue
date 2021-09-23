@@ -15,7 +15,7 @@ export default {
 <style scoped lang="scss">
     .container {
         width: 100%;
-        height: 100px;
+        height: 10%;
         background-color: #2E3A46;
 
         img {
