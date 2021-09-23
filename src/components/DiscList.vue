@@ -44,13 +44,8 @@ export default {
         height: 100%;
         background-color: #1E2D3B;
         display: flex;
-        justify-content: flex-start;
         flex-wrap: wrap;
-; 
-               
-        .x {
-            margin: 70px auto;
-            padding: 0 80px 0 80px;
-        }
+        justify-content: space-around;
+        text-align: center;
     }
 </style>

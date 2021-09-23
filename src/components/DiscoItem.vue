@@ -23,6 +23,7 @@ export default {
         align-items: center;
         flex-direction: column;
         min-height: 300px;
+        max-width: 150px;
 
 
 
@@ -32,8 +33,8 @@ export default {
         }
 
         h4 {
-            margin: 6px 0 4px 0;
             color: white;
+            word-wrap: break-word;
         }
         h5 {
             color: #64797F;
