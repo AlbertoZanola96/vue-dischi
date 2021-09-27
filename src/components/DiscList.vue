@@ -1,7 +1,10 @@
 <template>
     <div class="sfondo">
+        <div class="ric">
+            <Ricerca @effettuaRicerca="ricercaSet"/>
+        </div>
         <div class="container">
-            <div class="x" v-for="(disco, index) in listaDischi" :key="index">
+            <div class="x" v-for="(disco, index) in listaDischiFiltered" :key="index">
                 <DiscoItem :item="disco" />
             </div>
         </div>
@@ -11,21 +14,26 @@
 <script>
 import axios from 'axios';
 import DiscoItem from "../components/DiscoItem.vue";
+import Ricerca from "../components/Ricerca.vue"
+
 
 export default {
     name: 'DiscList',
     components: {
-        DiscoItem
+        DiscoItem,
+        Ricerca
     },
     data() {
         return {
             url: 'https://flynn.boolean.careers/exercises/api/array/music',
-            listaDischi: []
+            listaDischi: [],
+            listaDischiFiltered: [],
         }
     }, 
     created() {
         this.dischi();
     },
+
     methods: {
         dischi() {
             axios
@@ -33,7 +41,16 @@ export default {
                 .then(risposta => {
                     console.log(risposta.data.response)
                     this.listaDischi = risposta.data.response;
+                    this.listaDischiFiltered = this.listaDischi;
                 })
+        },
+        ricercaSet(option) {
+            if(option == "tutto") {
+                this.listaDischiFiltered = this.listaDischi;
+            }
+            else {
+                this.listaDischiFiltered = this.listaDischi.filter(x => x.genre == option);
+            }  
         }
     }
 }
@@ -65,5 +82,11 @@ export default {
                 margin-right: 10px;
             }
         }
+    }
+
+    .ric {
+        position: absolute;
+        top: 120px;
+        left: 44%;
     }
 </style>
